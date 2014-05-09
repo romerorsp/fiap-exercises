@@ -1,3 +1,5 @@
 bin/
 maven-fiap-plugin/.project
 maven-fiap-plugin/target/
+maven-fiap-plugin/.classpath
+maven-fiap-plugin/.settings/

@@ -41,6 +41,11 @@
 			<artifactId>asm</artifactId>
 			<version>5.0_BETA</version>
 		</dependency>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections-maven</artifactId>
+			<version>0.9.9-RC1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
