@@ -51,7 +51,7 @@ public class ReflectionHelper {
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		assert classLoader != null;
 		String path = packageName.replace('.', '/');
-		Enumeration<URL> resources = classLoader.getResources(path);
+		Enumeration<URL> resources = ClassLoader.getSystemResources(path);
 		List<File> dirs = new ArrayList<File>();
 		while (resources.hasMoreElements()) {
 			URL resource = resources.nextElement();
