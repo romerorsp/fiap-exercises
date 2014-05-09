@@ -83,11 +83,24 @@ public class FiapExercisesMojo extends AbstractMojo {
 			getLog().error("#OPÇÃO INEXISTENTE, O PLUGIN SERÁ ENCERRADO");
 		} else {
 			Exercise exercise = exercises.get(Integer.valueOf(selected)-1);
+			Stream.of(Stream.of(exercise.getStatement().split("\n"))
+					.collect(Collectors.joining("\n\t    ", String.format("\t%s - ", selected), "\n"))
+					.split("\n"))
+					.filter((s)->!s.isEmpty())
+					.forEach((s)->getLog().info(s));
+			getLog().info("");
+			getLog().info("________________________________________________________________________");
+			getLog().info("");
 			final Map<String, String> inputMap = new HashMap<>();
 			exercise.getInputNames()
                     .stream()
                     .forEach((desc)->{
-                    	System.out.print(String.format("[INPUT] Digite o valor %s: ", desc));
+                    	Stream.of(Stream.of(desc.split("\n"))
+            				  .collect(Collectors.joining("\n ", " VALOR [", "]\n"))
+            				  .split("\n"))
+            				  .filter((s)->!s.isEmpty())
+            				  .forEach((s)->System.out.println(String.format("[INPUT] %s", s)));
+                    	System.out.print("[INPUT]  Digite: ");
                     	String in = scan.next();
                     	inputMap.put(desc, in);
                     });
@@ -97,7 +110,11 @@ public class FiapExercisesMojo extends AbstractMojo {
 			getLog().info("");
 			try {
 				exercise.solve();
-				System.out.println(String.format("[OUTPUT] SOLUÇÃO: %s", exercise.getResultDescription()));
+				Stream.of(Stream.of(exercise.getResultDescription().split("\n"))
+      				  .collect(Collectors.joining("\n ", " SOLUÇÃO: ", "\n"))
+      				  .split("\n"))
+      				  .filter((s)->!s.isEmpty())
+      				  .forEach((s)->System.out.println(String.format("[OUTPUT] %s", s)));
 			} catch(Exception e) {
 				getLog().error(e.getMessage());
 				getLog().info("");
