@@ -1,12 +1,16 @@
 package br.com.pontoclass.exercise;
 
-import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class Exercise1 extends AbstractExercise {
 
-	private Map<String, String> input;
+	@SuppressWarnings("unused") private Map<String, String> input;
+
+	private double salario;
 
 	public String getStatement() {
 		return "Um funcionário de uma empresa recebe aumento salarial anualmente.\n" +
@@ -17,7 +21,7 @@ public class Exercise1 extends AbstractExercise {
 	}
 
 	public List<String> getInputNames() {
-		return Arrays.asList("Input Exercicio 1");
+		return Collections.emptyList();
 	}
 
 	public void setInputMap(Map<String, String> input) {
@@ -25,10 +29,20 @@ public class Exercise1 extends AbstractExercise {
 	}
 
 	public String getResultDescription() {
-		return "O resultado é: Exercicio 1";
+		return String.format("O salário atual do funcionário é de R$ %.2f.", salario);
 	}
 
 	public void solve() {
-		// TODO Auto-generated method stub
+		int ano = 2005;
+		float aumento = (1.5f/100);
+		this.salario = 1000.00;
+
+		Calendar tempo = Calendar.getInstance();
+		tempo.setTime(new Date(System.currentTimeMillis()));
+		int anoAtual = tempo.get(Calendar.YEAR);
+		while(++ano <= anoAtual) {
+			salario *= (1.0f + aumento);
+			aumento *= 2;
+		}
 	}
 }

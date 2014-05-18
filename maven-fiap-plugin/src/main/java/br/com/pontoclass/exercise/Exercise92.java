@@ -9,37 +9,26 @@ public class Exercise92 extends AbstractExercise {
 	private Map<String, String> input;
 
 	public String getStatement() {
-		return "Faça um programa que receba o preço unitário, a refrigeração (S para os produtos que necessitem de refrigeração e N para os que não necessitem) e a categoria (A – alimentação, L-limpeza e V-vestuário) de doze produtos, e que calcule e mostre:\n" +
-			   "\tO custo de estocagem, calculado de acordo com a tabela a seguir:\n" +
-			   "\t\t     Preço Unitário       | Refrigeração | Categoria | Custo de Estocagem\n" + 
-			   "\t\t                          |              |     A     |      R$ 2,00\n" +
-			   "\t\t                          |              |     L     |      R$ 3,00\n" +
-			   "\t\t         Até 20           |              |     V     |      R$ 4,00\n" +
-			   "\t\t-------------------------------------------------------------------------\n" +
-			   "\t\t                          |       S      |           |      R$ 6,00\n" +
-			   "\t\t Entre 20 e 50 (inclusive)|       N      |           |      R$ 0,00\n" +
-			   "\t\t-------------------------------------------------------------------------\n" +
-			   "\t\t                          |              |     A     |      R$ 5,00\n" +
-			   "\t\t                          |              |     L     |      R$ 2,00\n" +
-			   "\t\t                          |       S      |     V     |      R$ 4,00\n" +
-			   "\t\t                          |----------------------------------------------\n" +
-			   "\t\t                          |              |   A ou V  |      R$ 0,00\n" +
-			   "\t\t      Mais que 50         |       N      |     L     |      R$ 1,00\n" +
-			   "\t\t A. O imposto calculado de acordo com as regras a seguir:\n" +
-			   "Se o produto não preencher nenhum dos requisitos abaixo, seu imposto será de 2% sobre o preço unitário; caso contrário, será de 4%.\n" +
-			   "Os requisitos são: categoria –A e refrigeração – S. O preço final, ou seja, preço unitário mais custo de estocagem mais imposto.\n" + 
-			   "\tA classificação calculada usando a tabela a seguir:\n" + 
-			   "\t\t         Preço Final       | Classificação\n" +
-			   "\t\t        Até R$ 20,00       | Barato\n" +
-			   "\t\tEntre R$ 20,00 e R$ 100,00 | Normal\n" +
-			   "\t\t     Acima de R$ 100,00    | Caro\n" +
-			   "A média dos valores adicionais, ou seja, a média dos custos de estocagem e dos impostos dos doze produtos.\n" +
-			   "O maior preço final.\n" +
-			   "O menor preço final.\n" +
-			   "O total dos impostos.\n" +
-			   "A quantidade de produtos com classificação barato.\n" + 
-			   "A quantidade de produtos com classificação caro.\n" +
-			   "A quantidade de produtos com classificação normal.\n";
+		return "Faça um programa que receba os dados a seguir de vários produtos: preço unitário, país de origem (1- Estados Unidos, 2- México e 3- outros), meio de transporte (T- terrestre, F- fluvial e A- aéreo), carga perigosa (s-sim, N-não), finalize a entrada de dados com um preço inválido, ou seja, menor ou igual a zero e que calcule e mostre:\n" +
+			   "\t* O valor do imposto, usando a tabela a seguir:\n" +
+			   "\t\t                      |    Percentual de\n" +
+			   "\t\t                      | imposto sobre o preço\n" +
+			   "\t\t    Preço Unitário    |      unitário\n" +
+			   "\t\t     Até R$ 100,00    |         5%\n" +
+			   "\t\tMaiores que R$ 100,00 |        10%\n" +
+			   "\t* O valor do transporte usando a tabela a seguir:\n" +
+			   "\t\tCarga Perigosa | País de origem | Valor do transporte\n" +
+			   "\t\t               |        1       |      R$ 50,00\n" +
+			   "\t\t               |        2       |      R$ 21,00\n" +
+			   "\t\t       S       |        3       |      R$ 24,00\n" +
+			   "\t\t---------------|----------------|-------------------\n" +
+			   "\t\t               |        1       |      R$ 12,00\n" +
+			   "\t\t               |        2       |      R$ 21,00\n" +
+			   "\t\t       N       |        3       |      R$ 60,00\n" +
+			   "\t* O valor do seguro, usando a regra a seguir:\n" +
+			   "\tOs produtos que vêm do México e os produtos que utilizam transporte áereo pagam metade do valor do seu preço unitário como seguro.\n" +
+			   "\t\t* O preço final, ou seja, preço unitário, mais imposto mais valor do transporte mais valor do seguro.\n" +
+			   "\t\t* O total dos impostos.\n";
 	}
 
 	public List<String> getInputNames() {

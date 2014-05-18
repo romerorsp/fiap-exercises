@@ -9,37 +9,28 @@ public class Exercise91 extends AbstractExercise {
 	private Map<String, String> input;
 
 	public String getStatement() {
-		return "Faça um programa que receba o preço unitário, a refrigeração (S para os produtos que necessitem de refrigeração e N para os que não necessitem) e a categoria (A – alimentação, L-limpeza e V-vestuário) de doze produtos, e que calcule e mostre:\n" +
-			   "\tO custo de estocagem, calculado de acordo com a tabela a seguir:\n" +
-			   "\t\t     Preço Unitário       | Refrigeração | Categoria | Custo de Estocagem\n" + 
-			   "\t\t                          |              |     A     |      R$ 2,00\n" +
-			   "\t\t                          |              |     L     |      R$ 3,00\n" +
-			   "\t\t         Até 20           |              |     V     |      R$ 4,00\n" +
-			   "\t\t-------------------------------------------------------------------------\n" +
-			   "\t\t                          |       S      |           |      R$ 6,00\n" +
-			   "\t\t Entre 20 e 50 (inclusive)|       N      |           |      R$ 0,00\n" +
-			   "\t\t-------------------------------------------------------------------------\n" +
-			   "\t\t                          |              |     A     |      R$ 5,00\n" +
-			   "\t\t                          |              |     L     |      R$ 2,00\n" +
-			   "\t\t                          |       S      |     V     |      R$ 4,00\n" +
-			   "\t\t                          |----------------------------------------------\n" +
-			   "\t\t                          |              |   A ou V  |      R$ 0,00\n" +
-			   "\t\t      Mais que 50         |       N      |     L     |      R$ 1,00\n" +
-			   "\t\t A. O imposto calculado de acordo com as regras a seguir:\n" +
-			   "Se o produto não preencher nenhum dos requisitos abaixo, seu imposto será de 2% sobre o preço unitário; caso contrário, será de 4%.\n" +
-			   "Os requisitos são: categoria –A e refrigeração – S. O preço final, ou seja, preço unitário mais custo de estocagem mais imposto.\n" + 
-			   "\tA classificação calculada usando a tabela a seguir:\n" + 
-			   "\t\t         Preço Final       | Classificação\n" +
-			   "\t\t        Até R$ 20,00       | Barato\n" +
-			   "\t\tEntre R$ 20,00 e R$ 100,00 | Normal\n" +
-			   "\t\t     Acima de R$ 100,00    | Caro\n" +
-			   "A média dos valores adicionais, ou seja, a média dos custos de estocagem e dos impostos dos doze produtos.\n" +
-			   "O maior preço final.\n" +
-			   "O menor preço final.\n" +
-			   "O total dos impostos.\n" +
-			   "A quantidade de produtos com classificação barato.\n" + 
-			   "A quantidade de produtos com classificação caro.\n" +
-			   "A quantidade de produtos com classificação normal.\n";
+		return "Faça um programa que apresente o menu de opções a seguir, permita ao usuário escolher a opção desejada, receba os dados necessários para executar a operação e mostre o resultado. Verifique a possibilidade de opção inválida e não se preocupe com restrições do tipo salário inválido.\n" +
+			   "\tMenu de opções:\n" +
+			   "\t\t1. Imposto\n" +
+			   "\t\t2. Novo salário\n" +
+			   "\t\t3. Classificação\n" +
+			   "\t\t4. Finalizar programa\n" +
+			   "\tDigite a opção desejada:\n" +
+			   "\tNa opção 1: receber o salário de um funcionário, calcular e mostrar o valor do imposto usando as regras a seguir:\n" +
+			   "\t\t          Salário        | % de imposto\n" +
+			   "\t\t   Menor que R$ 500,00   |      5\n" +
+			   "\t\tDe R$ 500,00 a R$ 850,00 |     10\n" +
+			   "\t\t    Acima de R$ 850,00   |     15\n" +
+			   "\tNa opção 2: receber o salário de um funcionário, calcular e mostrar o valor do novo salário usando as regras a seguir:\n" +
+			   "\t\t                    Salários                       | AUMENTO\n" +
+			   "\t\t              Maior que R$ 1500,00                 |  R$ 25,00\n" +
+			   "\t\tDe R$ 750,00 (inclusive) a R$ 1.500,00 (inclusive) |  R$ 50,00\n" +
+			   "\t\t      De R$ 450,00 (inclusive) a R$ 750,00         |  R$ 75,00\n" +
+			   "\t\t             Menores que R$ 450,00                 | R$ 100,00\n" +
+			   "\tNa opção 3: receber o salário de um funcionário e mostrar sua classificação usando a tabela abaixo:\n" +
+			   "\t\t          Salário       | Classificação\n" +
+			   "\t\t       Até R$ 700,00    | MAL remunerado\n" +
+			   "\t\t  Maiores que R$ 700,00 | BEM remunerado\n";
 	}
 
 	public List<String> getInputNames() {

@@ -33,7 +33,7 @@ import br.com.pontoclass.reflection.ReflectionHelper;
 @Mojo(name="exercicios", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class FiapExercisesMojo extends AbstractMojo {
 
-	public void execute() throws MojoExecutionException, MojoFailureException {
+	@SuppressWarnings({"rawtypes", "unchecked"}) public void execute() throws MojoExecutionException, MojoFailureException {
 		new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("begin.template")))
 			.lines()
 			.forEach((line) -> getLog().info(line));
@@ -73,51 +73,52 @@ public class FiapExercisesMojo extends AbstractMojo {
 		getLog().info("");
 		System.out.print("[INPUT] Opção: ");
 
-		final Scanner scan = new Scanner(System.in);
-		String selected = scan.next();
-		
-		if(!StringUtils.isNumeric(selected)) {
-			getLog().error("#OPÇÃO INVÁLIDA, O PLUGIN SERÁ ENCERRADO");
-		}
-		if(Integer.valueOf(selected) > exercises.size()) {
-			getLog().error("#OPÇÃO INEXISTENTE, O PLUGIN SERÁ ENCERRADO");
-		} else {
-			Exercise exercise = exercises.get(Integer.valueOf(selected)-1);
-			Stream.of(Stream.of(exercise.getStatement().split("\n"))
-					.collect(Collectors.joining("\n\t    ", String.format("\t%s - ", selected), "\n"))
-					.split("\n"))
-					.filter((s)->!s.isEmpty())
-					.forEach((s)->getLog().info(s));
-			getLog().info("");
-			getLog().info("________________________________________________________________________");
-			getLog().info("");
-			final Map<String, String> inputMap = new HashMap<>();
-			exercise.getInputNames()
-                    .stream()
-                    .forEach((desc)->{
-                    	Stream.of(Stream.of(desc.split("\n"))
-            				  .collect(Collectors.joining("\n ", " VALOR [", "]\n"))
-            				  .split("\n"))
-            				  .filter((s)->!s.isEmpty())
-            				  .forEach((s)->System.out.println(String.format("[INPUT] %s", s)));
-                    	System.out.print("[INPUT]  Digite: ");
-                    	String in = scan.next();
-                    	inputMap.put(desc, in);
-                    });
-			exercise.setInputMap(inputMap);
-			getLog().info("");
-			getLog().info("Iniciando processamento....");
-			getLog().info("");
-			try {
-				exercise.solve();
-				Stream.of(Stream.of(exercise.getResultDescription().split("\n"))
-      				  .collect(Collectors.joining("\n ", " SOLUÇÃO: ", "\n"))
-      				  .split("\n"))
-      				  .filter((s)->!s.isEmpty())
-      				  .forEach((s)->System.out.println(String.format("[OUTPUT] %s", s)));
-			} catch(Exception e) {
-				getLog().error(e.getMessage());
+		try(final Scanner scan = new Scanner(System.in)) {
+			String selected = scan.nextLine();
+			
+			if(!StringUtils.isNumeric(selected)) {
+				getLog().error("#OPÇÃO INVÁLIDA, O PLUGIN SERÁ ENCERRADO");
+			}
+			if(Integer.valueOf(selected) > exercises.size()) {
+				getLog().error("#OPÇÃO INEXISTENTE, O PLUGIN SERÁ ENCERRADO");
+			} else {
+				Exercise exercise = exercises.get(Integer.valueOf(selected)-1);
+				Stream.of(Stream.of(exercise.getStatement().split("\n"))
+						.collect(Collectors.joining("\n\t    ", String.format("\t%s - ", selected), "\n"))
+						.split("\n"))
+						.filter((s)->!s.isEmpty())
+						.forEach((s)->getLog().info(s));
 				getLog().info("");
+				getLog().info("________________________________________________________________________");
+				getLog().info("");
+				final Map<String, String> inputMap = new HashMap<>();
+				exercise.getInputNames()
+	                    .stream()
+	                    .forEach((desc)->{
+	                    	Stream.of(Stream.of(desc.split("\n"))
+	            				  .collect(Collectors.joining("\n        ", " VALOR [", "]\n"))
+	            				  .split("\n"))
+	            				  .filter((s)->!s.isEmpty())
+	            				  .forEach((s)->System.out.println(String.format("[INPUT] %s", s)));
+	                    	System.out.print("[INPUT]  Digite: ");
+	                    	String in = scan.nextLine();
+	                    	inputMap.put(desc, in);
+	                    });
+				exercise.setInputMap(inputMap);
+				getLog().info("");
+				getLog().info("Iniciando processamento....");
+				getLog().info("");
+				try {
+					exercise.solve();
+					Stream.of(Stream.of(exercise.getResultDescription().split("\n"))
+	      				  .collect(Collectors.joining("\n ", " SOLUÇÃO: ", "\n"))
+	      				  .split("\n"))
+	      				  .filter((s)->!s.isEmpty())
+	      				  .forEach((s)->System.out.println(String.format("[OUTPUT] %s", s)));
+				} catch(Exception e) {
+					getLog().error(e.getMessage());
+					getLog().info("");
+				}
 			}
 		}
 		new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("end.template")))
