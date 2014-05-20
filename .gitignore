@@ -5,3 +5,5 @@ maven-fiap-plugin/.classpath
 maven-fiap-plugin/.settings/
 .project
 .settings/
+/target
+.classpath
