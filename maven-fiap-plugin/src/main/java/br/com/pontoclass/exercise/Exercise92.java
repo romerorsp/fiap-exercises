@@ -9,7 +9,9 @@ public class Exercise92 extends AbstractExercise {
 	private Map<String, String> input;
 
 	public String getStatement() {
-		return "Faça um programa que receba os dados a seguir de vários produtos: preço unitário, país de origem (1- Estados Unidos, 2- México e 3- outros), meio de transporte (T- terrestre, F- fluvial e A- aéreo), carga perigosa (s-sim, N-não), finalize a entrada de dados com um preço inválido, ou seja, menor ou igual a zero e que calcule e mostre:\n" +
+		return "Faça um programa que receba os dados a seguir de vários produtos: preço unitário, país de origem (1- Estados Unidos, 2- México e 3- outros), " +
+			   "meio de transporte (T- terrestre, F- fluvial e A- aéreo), carga perigosa (s-sim, N-não), finalize a entrada de dados com um preço inválido, ou seja, " +
+			   "menor ou igual a zero e que calcule e mostre:\n" +
 			   "\t* O valor do imposto, usando a tabela a seguir:\n" +
 			   "\t\t                      |    Percentual de\n" +
 			   "\t\t                      | imposto sobre o preço\n" +
